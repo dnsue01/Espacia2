@@ -20,11 +20,12 @@ public class BaseDeDatos extends SQLiteOpenHelper {
 
     final String entretenimiento = "Entretenimiento";
     //falta ciencias
+    final String ciencias = "Ciencias y naturaleza";
     final String deportes = "Ocio y deporte";
 
     final String historia = "Historia";
 
-    //falta Arte y Literatura
+    final String Arte  = "Arte y Literatura";
     final  String geografia = "Geografía";
 
 
@@ -551,8 +552,86 @@ public class BaseDeDatos extends SQLiteOpenHelper {
 
 
 
+        ContentValues valuesCiencias1 = new ContentValues();
+        valuesCiencias1.put(preguntas, "¿Cómo se llama el ave más grande en la actualidad?");
+        valuesCiencias1.put(respuestas, "Albatros");
+        valuesCiencias1.put(opciones, "Albatros, Patos, Ocas,Cisnes");
+        valuesCiencias1.put(tipo, ciencias);
+        db.insert(tablaDB, null, valuesCiencias1);
+
+        ContentValues valuesCiencias2 = new ContentValues();
+        valuesCiencias2.put(preguntas, "¿Cuáles son las células más importantes y numerosas del cerebro? ");
+        valuesCiencias2.put(respuestas, " nerviosas");
+        valuesCiencias2.put(opciones, " nerviosas, eucariotas, muertas,vegetales");
+        valuesCiencias2.put(tipo, ciencias);
+        db.insert(tablaDB, null, valuesCiencias2);
+
+        ContentValues valuesCiencias3 = new ContentValues();
+        valuesCiencias3.put(preguntas, "¿En qué lado del cuerpo está el hígado?");
+        valuesCiencias3.put(respuestas, "derecho");
+        valuesCiencias3.put(opciones, "derecho, izquierdo, medio,cerebro");
+        valuesCiencias3.put(tipo, ciencias);
+        db.insert(tablaDB, null, valuesCiencias3);
+
+        ContentValues valuesCiencias4 = new ContentValues();
+        valuesCiencias4.put(preguntas, "¿En qué mes el Sol está más cerca de la Tierra? ");
+        valuesCiencias4.put(respuestas, "Diciembre");
+        valuesCiencias4.put(opciones, "Diciembre, Enero, Diciembre,Septiembre");
+        valuesCiencias4.put(tipo, ciencias);
+        db.insert(tablaDB, null, valuesCiencias4);
+
+        ContentValues valuesCiencias5 = new ContentValues();
+        valuesCiencias5.put(preguntas, "¿Cuántos elementos tiene la tabla periódica? ");
+        valuesCiencias5.put(respuestas, "118");
+        valuesCiencias5.put(opciones, "118, 120, 100,121");
+        valuesCiencias5.put(tipo, ciencias);
+        db.insert(tablaDB, null, valuesCiencias5);
 
 
+        ContentValues valuesArte1 = new ContentValues();
+        valuesArte1.put(preguntas, "¿Quién pintó el 'Guernica'?");
+        valuesArte1.put(respuestas, "Picasso");
+        valuesArte1.put(opciones, "Picasso, Giobany,Goethe,Lorca");
+        valuesArte1.put(tipo, Arte);
+        db.insert(tablaDB, null, valuesArte1);
+
+
+        ContentValues valuesArte2 = new ContentValues();
+        valuesArte2.put(preguntas, "¿Quién pintó el 'Guernica'?");
+        valuesArte2.put(respuestas, "Picasso");
+        valuesArte2.put(opciones, "Picasso, Giobany,Goethe,Lorca");
+        valuesArte2.put(tipo, Arte);
+        db.insert(tablaDB, null, valuesArte2);
+
+
+        ContentValues valuesArte3 = new ContentValues();
+        valuesArte3.put(preguntas, "¿Quién es el autor de 'Poeta en Nueva York`? ");
+        valuesArte3.put(respuestas, "Lorca");
+        valuesArte3.put(opciones, "Lorca, Giobany,Goethe,Lorca");
+        valuesArte3.put(tipo, Arte);
+        db.insert(tablaDB, null, valuesArte3);
+
+
+        ContentValues valuesArte4 = new ContentValues();
+        valuesArte4.put(preguntas, "¿Cuál era el apodo de Miguel de Cervantes?");
+        valuesArte4.put(respuestas, "Picasso");
+        valuesArte4.put(opciones, "Picasso, Giobany,Goethe,Lorca");
+        valuesArte4.put(tipo, Arte);
+        db.insert(tablaDB, null, valuesArte4);
+
+        ContentValues valuesArte5 = new ContentValues();
+        valuesArte5.put(preguntas, "¿Quién escribió 'La conjura de los necios'?");
+        valuesArte5.put(respuestas, "Toole");
+        valuesArte5.put(opciones, "Toole, Giobany,Goethe,Lorca");
+        valuesArte5.put(tipo, Arte);
+        db.insert(tablaDB, null, valuesArte5);
+
+        ContentValues valuesArte6 = new ContentValues();
+        valuesArte6.put(preguntas, "¿Quién pintó 'El grito'? ");
+        valuesArte6.put(respuestas, "Munch");
+        valuesArte6.put(opciones, "Munch, Giobany,Goethe,Lorca");
+        valuesArte6.put(tipo, Arte);
+        db.insert(tablaDB, null, valuesArte6);
 
     }
     @Override
