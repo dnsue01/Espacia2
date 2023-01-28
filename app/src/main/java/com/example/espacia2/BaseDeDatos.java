@@ -588,6 +588,115 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         db.insert(tablaDB, null, valuesCiencias5);
 
 
+
+        ContentValues valuesCiencias6 = new ContentValues();
+        valuesCiencias6.put(preguntas, "¿De qué color es la sange de los peces?");
+        valuesCiencias6.put(respuestas, "Rojo");
+        valuesCiencias6.put(opciones, "Verde oscuro,Marrón oscuro,Rojo,Azul");
+        valuesCiencias6.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias6);
+
+        ContentValues valuesCiencias7 = new ContentValues();
+        valuesCiencias7.put(preguntas, "¿Cuál de los siguientes órganos NO es parte del sistema inmunológico?");
+        valuesCiencias7.put(respuestas, "Esófago");
+        valuesCiencias7.put(opciones, "Esófago,Médula ósea,Bazo,Timo");
+        valuesCiencias7.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias7);
+
+        ContentValues valuesCiencias8 = new ContentValues();
+        valuesCiencias8.put(preguntas, "¿Qué es el calostro?");
+        valuesCiencias8.put(respuestas, "La primera leche materna");
+        valuesCiencias8.put(opciones, "Un hueso de la espina dorsal,Una hormona,Una parte del intestino grueso,La primera leche materna");
+        valuesCiencias8.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias8);
+
+        ContentValues valuesCiencias9 = new ContentValues();
+        valuesCiencias9.put(preguntas, "¿Cuál es el hueso más pequeño del cuerpo?");
+        valuesCiencias9.put(respuestas, "El estribo");
+        valuesCiencias9.put(opciones, "El yunque,La falange,El estribo,Ninguna es correcta");
+        valuesCiencias9.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias9);
+
+        ContentValues valuesCiencias10 = new ContentValues();
+        valuesCiencias10.put(preguntas, "¿Dónde vive el delfín rosado?");
+        valuesCiencias10.put(respuestas, "En Brasil");
+        valuesCiencias10.put(opciones, "En Brasil,En Oceanía,Solo en aguas cálidas,Solo en aguas muy frías");
+        valuesCiencias10.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias10);
+
+        ContentValues valuesCiencias11 = new ContentValues();
+        valuesCiencias11.put(preguntas, "¿Qué estudia la icitología?");
+        valuesCiencias11.put(respuestas, "Los peces");
+        valuesCiencias11.put(opciones, "Los insectos,Las erupciones cutáneas,Las rocas,Los peces");
+        valuesCiencias11.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias11);
+
+        ContentValues valuesCiencias12 = new ContentValues();
+        valuesCiencias12.put(preguntas, "¿Cuál es el mamífero más grande conocido hasta la actualidad?");
+        valuesCiencias12.put(respuestas, "Ballena Azul");
+        valuesCiencias12.put(opciones, "Ballena Azul,Cachalote,Elefante,Rinoceronte");
+        valuesCiencias12.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias12);
+
+        ContentValues valuesCiencias13 = new ContentValues();
+        valuesCiencias13.put(preguntas, "¿Qué es un equino?");
+        valuesCiencias13.put(respuestas, "Un caballo");
+        valuesCiencias13.put(opciones, "Una vaca,Un antílope,Una oveja,Un caballo");
+        valuesCiencias13.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias13);
+
+        ContentValues valuesCiencias14 = new ContentValues();
+        valuesCiencias14.put(preguntas, "¿Qué causa furor en Internet?");
+        valuesCiencias14.put(respuestas, "Los gatos");
+        valuesCiencias14.put(opciones, "Los ratones,Los gatos,Los gansos,Los cangrejos");
+        valuesCiencias14.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias14);
+
+
+        ContentValues valuesCiencias15 = new ContentValues();
+        valuesCiencias15.put(preguntas, "¿Con qué otro nombre se conoce el ciclo del agua?");
+        valuesCiencias15.put(respuestas, "Ciclo hidrológico");
+        valuesCiencias15.put(opciones, "Ciclo natural,Ciclo hidropónico,Ciclo hidrológico,Ciclo acuoso");
+        valuesCiencias15.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias15);
+
+        ContentValues valuesCiencias16 = new ContentValues();
+        valuesCiencias16.put(preguntas, "¿Cuántas cavidades estomacales tiene una vaca?");
+        valuesCiencias16.put(respuestas, "Cuatro");
+        valuesCiencias16.put(opciones, "Una,Dos,Tres,Cuatro");
+        valuesCiencias16.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias16);
+
+        ContentValues valuesCiencias17 = new ContentValues();
+        valuesCiencias17.put(preguntas, "¿Por qué los cocodrilos mantienen la boca abierta durante largo rato?");
+        valuesCiencias17.put(respuestas, "Para calentarse");
+        valuesCiencias17.put(opciones, "Para calentarse,Para hacer la digestión,Para beber agua,Por si se cuela algo que puedan comerse");
+        valuesCiencias17.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias17);
+
+        ContentValues valuesCiencias18 = new ContentValues();
+        valuesCiencias18.put(preguntas, "¿Qué es lo que transforma la leche en yogur?");
+        valuesCiencias18.put(respuestas, "Una bacteria");
+        valuesCiencias18.put(opciones, "Un virus,Un musgo,Una bacteria,El tiempo");
+        valuesCiencias18.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias18);
+
+        ContentValues valuesCiencias19 = new ContentValues();
+        valuesCiencias19.put(preguntas, "¿Qué tipo de mamífero es un conejo?");
+        valuesCiencias19.put(respuestas, "Lagomorfo");
+        valuesCiencias19.put(opciones, "Roedor,Lagomorfo,Marsupial,Equino");
+        valuesCiencias19.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias19);
+
+        ContentValues valuesCiencias20 = new ContentValues();
+        valuesCiencias20.put(preguntas, "¿En qué lugar del cuerpo se produce la insulina?");
+        valuesCiencias20.put(respuestas, "Páncreas");
+        valuesCiencias20.put(opciones, "Páncreas,Hígado,Intestino,Riñon");
+        valuesCiencias20.put(tipo,ciencias);
+        db.insert(tablaDB, null, valuesCiencias20);
+
+
+
         ContentValues valuesArte1 = new ContentValues();
         valuesArte1.put(preguntas, "¿Quién pintó el 'Guernica'?");
         valuesArte1.put(respuestas, "Picasso");
@@ -632,6 +741,104 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         valuesArte6.put(opciones, "Munch, Giobany,Goethe,Lorca");
         valuesArte6.put(tipo, Arte);
         db.insert(tablaDB, null, valuesArte6);
+
+        ContentValues valuesArte7 = new ContentValues();
+        valuesArte7.put(preguntas, "¿Cuál era la nacionalidad de Heri Cartier-Bresson, considerado por muchos el padre del fotoreportaje?");
+        valuesArte7.put(respuestas, "Francesa");
+        valuesArte7.put(opciones, "Española,Alemana,Francesa,Británica");
+        valuesArte7.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte7);
+
+        ContentValues valuesArte8 = new ContentValues();
+        valuesArte8.put(preguntas, "¿Cuál es la ciudad fetiche del escritor Paul Auster?");
+        valuesArte8.put(respuestas, "Nueva York");
+        valuesArte8.put(opciones, "Londres,París,Chicago,Nueva York");
+        valuesArte8.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte7);
+
+        ContentValues valuesArte9 = new ContentValues();
+        valuesArte9.put(preguntas, "¿Cuál de los siguientes artistas es una figura clave del dadaísmo y el surrealismo?");
+        valuesArte9.put(respuestas, "Max Ernst");
+        valuesArte9.put(opciones, "Claude Monet,Vincent Van Gogh,Max Ernst,Rafael");
+        valuesArte9.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte9);
+
+        ContentValues valuesArte10 = new ContentValues();
+        valuesArte10.put(preguntas, "¿Qué profesión tenía Hércules Poiriot en las novelas de Agatha Christie?");
+        valuesArte10.put(respuestas, "");
+        valuesArte10.put(opciones, "Policía,Médico,Paul Verlaine,Detective");
+        valuesArte10.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte10);
+
+        ContentValues valuesArte11 = new ContentValues();
+        valuesArte11.put(preguntas, "¿Qué cosa perdida buscaba Marcel Proust?");
+        valuesArte11.put(respuestas, "El tiempo");
+        valuesArte11.put(opciones, "El amor,La fortuna,La existencia,El tiempo");
+        valuesArte11.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte11);
+
+        ContentValues valuesArte12 = new ContentValues();
+        valuesArte12.put(preguntas, "¿Qué editorial ha publicado los dos últimos libros del humorista y escritor Miguel Noguera?");
+        valuesArte12.put(respuestas, "Blackie Books");
+        valuesArte12.put(opciones, "Mondadori,Alpha Decay,Blackie Books,Planeta");
+        valuesArte12.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte12);
+
+        ContentValues valuesArte13 = new ContentValues();
+        valuesArte13.put(preguntas, "¿Cuál fue el género más cultivado por los autores de la generación del 27?");
+        valuesArte13.put(respuestas, "Poesía");
+        valuesArte13.put(opciones, "Ensayo,Poesía,Teatro,Novela");
+        valuesArte13.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte13);
+
+        ContentValues valuesArte14 = new ContentValues();
+        valuesArte14.put(preguntas, "¿Qué describe una prosopografía?");
+        valuesArte14.put(respuestas, "");
+        valuesArte14.put(opciones, "El carácter de una persona,El físico de una persona,El fisico y el carácter de una persona,Caricaturiza a una persona");
+        valuesArte14.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte14);
+
+        ContentValues valuesArte15 = new ContentValues();
+        valuesArte15.put(preguntas, "¿Qué escritor español firmaba como Fígaro?");
+        valuesArte15.put(respuestas, "Mariano José de Larra");
+        valuesArte15.put(opciones, "Federico García Lorca,Antonio Machado,Francisco de Quevedo,Mariano José de Larra");
+        valuesArte15.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte15);
+
+        ContentValues valuesArte16 = new ContentValues();
+        valuesArte16.put(preguntas, "¿A dónde pertenece la colección de relatos folklóricos llamada Mabinogion?");
+        valuesArte16.put(respuestas, "Gales");
+        valuesArte16.put(opciones, "Inglaterra,Gales,Escocia,Irlanda");
+        valuesArte16.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte16);
+
+        ContentValues valuesArte17 = new ContentValues();
+        valuesArte17.put(preguntas, "¿En qué siglo nació el artista conocido como Caravaggio?");
+        valuesArte17.put(respuestas, "XVI");
+        valuesArte17.put(opciones, "XIV,XII,XVI,XVIII");
+        valuesArte17.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte17);
+
+        ContentValues valuesArte18 = new ContentValues();
+        valuesArte18.put(preguntas, "¿Cómo se llama a la gente que no posee magia en la saga de Harry Potter?");
+        valuesArte18.put(respuestas, "Muggles");
+        valuesArte18.put(opciones, "Humano,Simplón,Impuro,Muggles");
+        valuesArte18.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte18);
+
+        ContentValues valuesArte19 = new ContentValues();
+        valuesArte19.put(preguntas, "¿Qué odia Mafalda?");
+        valuesArte19.put(respuestas, "La sopa");
+        valuesArte19.put(opciones, "El Pájaro Loco,La sopa,Los panqueques,A Manolito");
+        valuesArte19.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte19);
+
+        ContentValues valuesArte20 = new ContentValues();
+        valuesArte20.put(preguntas, "Arroz con leche me quiero..");
+        valuesArte20.put(respuestas, "Casar");
+        valuesArte20.put(opciones, "Escapar,Matar,Cazar,Casar");
+        valuesArte20.put(tipo,Arte);
+        db.insert(tablaDB, null, valuesArte20);
 
     }
     @Override

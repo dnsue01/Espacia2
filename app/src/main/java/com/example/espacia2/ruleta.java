@@ -2,7 +2,9 @@ package com.example.espacia2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -10,6 +12,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -27,14 +31,44 @@ public class ruleta extends AppCompatActivity {
 
     String temaPregunta;
 
+    Bundle parametros;
 
+    static int contador = 0;
+
+    boolean acierto;
+
+    ImageView estrella1,estrella2,estrella3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ruleta);
 
+
+        Bundle parametros = getIntent().getExtras();
+        if(parametros !=null){
+            acierto =  parametros.getBoolean("acierto");
+            if(acierto){
+                contador++;
+            }else{
+                contador = 0;
+            }
+        }
+
+
         ruleta = (ImageView) findViewById(R.id.imageView);
         boton = (Button) findViewById(R.id.button);
+
+        estrella1 =  (ImageView) findViewById(R.id.estrella1);
+        estrella2 =  (ImageView) findViewById(R.id.estrella2);
+        estrella3 =  (ImageView) findViewById(R.id.estrella3);
+
+
+        Context context = getApplicationContext();
+        CharSequence text = Integer.toString(contador);
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
 
         getGrado();
 

@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
@@ -49,7 +50,8 @@ public class preguntas extends AppCompatActivity {
     Random r = new Random();
     int numeroR ;
 
-    boolean acertada;
+    boolean acertada,constada;
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +84,23 @@ public class preguntas extends AppCompatActivity {
 
         getPreguntaAleatoria();
 
-        tiempo();
+
+        countDownTimer = new CountDownTimer(30000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                //se ejecuta cada segundo
+            }
+
+            public void onFinish() {
+                //acciones a realizar cuando se acaba el tiempo
+                acertada = false;
+                Intent intent = new Intent(getApplicationContext(), ruleta.class);
+                intent.putExtra("acierto", acertada);
+                startActivity(intent);
+                finish();
+            }
+        };
+        countDownTimer.start();
+
       respuesta1.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
@@ -134,14 +152,20 @@ public class preguntas extends AppCompatActivity {
                 respuestaElegida = respuestaElegida.trim();
                 if(respuestaElegida!=null){
                     if(respuestaElegida.equals(respuestaVerdadera)){
+
                         Context context = getApplicationContext();
                         CharSequence text = "Acierto!";
                         int duration = Toast.LENGTH_SHORT;
-
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
 
                         acertada = true;
+                        constada = true;
+
+                        Intent intent = new Intent(getApplicationContext(), ruleta.class);
+                        intent.putExtra("acierto", acertada);
+                        startActivity(intent);
+                        finish();
                     }else{
                         Context context = getApplicationContext();
                         CharSequence text = "Fallo! la respuesta era "+respuestaVerdadera;
@@ -150,6 +174,11 @@ public class preguntas extends AppCompatActivity {
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
                         acertada = false;
+                        constada = true;
+                        Intent intent = new Intent(getApplicationContext(), ruleta.class);
+                        intent.putExtra("acierto", acertada);
+                        startActivity(intent);
+                        finish();
                     }
                 }else{
                     Context context = getApplicationContext();
@@ -164,27 +193,13 @@ public class preguntas extends AppCompatActivity {
         });
     }
 
-    private void tiempo() {
-
-        int tiempoTranscurrir = 30000; //30 segundos
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run()
-            {
-                Context context = getApplicationContext();
-                CharSequence text = "Se te acabo el tiempo!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-
-                acertada = false;
-
-            }
-        }, tiempoTranscurrir );//define el tiempo.
-
+    protected void onStop() {
+        super.onStop();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
     }
+
 
     private void getPreguntaAleatoria() {
 
