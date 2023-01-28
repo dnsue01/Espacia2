@@ -44,7 +44,7 @@ public class ruleta extends AppCompatActivity {
         setContentView(R.layout.activity_ruleta);
 
 
-        Bundle parametros = getIntent().getExtras();
+        parametros = getIntent().getExtras();
         if(parametros !=null){
             acierto =  parametros.getBoolean("acierto");
             if(acierto){
@@ -63,15 +63,9 @@ public class ruleta extends AppCompatActivity {
         estrella3 =  (ImageView) findViewById(R.id.estrella3);
 
 
-        Context context = getApplicationContext();
-        CharSequence text = Integer.toString(contador);
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-
         getGrado();
 
+        getEstrellas();
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +77,23 @@ public class ruleta extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getEstrellas() {
+        switch (contador){
+            case 1:
+                estrella1.setImageResource(R.drawable.estrella);
+                break;
+            case 2:
+                estrella1.setImageResource(R.drawable.estrella);
+                estrella2.setImageResource(R.drawable.estrella);
+                break;
+            case 3:
+                estrella1.setImageResource(R.drawable.estrella);
+                estrella2.setImageResource(R.drawable.estrella);
+                estrella3.setImageResource(R.drawable.estrella);
+                break;
+        }
     }
 
     private void girar(){
