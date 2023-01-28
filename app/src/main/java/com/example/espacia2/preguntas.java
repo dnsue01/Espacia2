@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -47,6 +49,8 @@ public class preguntas extends AppCompatActivity {
     Random r = new Random();
     int numeroR ;
 
+    boolean acertada;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +82,7 @@ public class preguntas extends AppCompatActivity {
 
         getPreguntaAleatoria();
 
-
+        tiempo();
       respuesta1.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
@@ -136,6 +140,8 @@ public class preguntas extends AppCompatActivity {
 
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
+
+                        acertada = true;
                     }else{
                         Context context = getApplicationContext();
                         CharSequence text = "Fallo! la respuesta era "+respuestaVerdadera;
@@ -143,6 +149,7 @@ public class preguntas extends AppCompatActivity {
 
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
+                        acertada = false;
                     }
                 }else{
                     Context context = getApplicationContext();
@@ -151,9 +158,32 @@ public class preguntas extends AppCompatActivity {
 
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
+
                 }
             }
         });
+    }
+
+    private void tiempo() {
+
+        int tiempoTranscurrir = 30000; //30 segundos
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run()
+            {
+                Context context = getApplicationContext();
+                CharSequence text = "Se te acabo el tiempo!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
+                acertada = false;
+
+            }
+        }, tiempoTranscurrir );//define el tiempo.
+
     }
 
     private void getPreguntaAleatoria() {
