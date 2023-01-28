@@ -93,7 +93,7 @@ public class preguntas extends AppCompatActivity {
             public void onFinish() {
                 //acciones a realizar cuando se acaba el tiempo
                 acertada = false;
-                Intent intent = new Intent(getApplicationContext(), ruleta.class);
+                Intent intent = new Intent(getApplicationContext(), mapa.class);
                 intent.putExtra("acierto", acertada);
                 startActivity(intent);
                 finish();
@@ -175,7 +175,7 @@ public class preguntas extends AppCompatActivity {
                         toast.show();
                         acertada = false;
                         constada = true;
-                        Intent intent = new Intent(getApplicationContext(), ruleta.class);
+                        Intent intent = new Intent(getApplicationContext(), mapa.class);
                         intent.putExtra("acierto", acertada);
                         startActivity(intent);
                         finish();

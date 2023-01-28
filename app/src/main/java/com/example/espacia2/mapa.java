@@ -8,6 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class mapa extends AppCompatActivity {
     //j1
@@ -35,7 +40,7 @@ public class mapa extends AppCompatActivity {
     static int x1 = 425;
     static int y1 = 0;
 
-    static String quesosJ1[] = new String[quesos.length];
+    static List<String> quesosJ1 = new ArrayList<>();
 
 
     //variablles jugador2
@@ -43,7 +48,7 @@ public class mapa extends AppCompatActivity {
     static int x2 = 425;
     static int y2 = 900;
 
-    static String quesosJ2[] = new String[quesos.length];
+    static List<String> quesosJ2 = new ArrayList<>();
 
 
     //primer jugador false
@@ -54,11 +59,15 @@ public class mapa extends AppCompatActivity {
 
     String jugadores;
 
-    String jugador1, avatar1;
-    String jugador2, avatar2;
+    static String[] jugadoresArray;
 
+    static String jugador1;
+    static String avatar1 = "";
+    static String jugador2;
+    static String avatar2;
     ConstraintLayout layout;
-
+    boolean fallado;
+    TextView jugadorTetxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,15 +78,27 @@ public class mapa extends AppCompatActivity {
         parametros = this.getIntent().getExtras();
         if (parametros != null) {
             jugadores = parametros.getString("jugadores");
-            avatar1 = parametros.getString("avatar1");
-            avatar2 = parametros.getString("avatar2");
+            if(avatar1.equals("")){
+                avatar1 = parametros.getString("avatar1");
+                avatar2 = parametros.getString("avatar2");
+            }
+
+            if(parametros.containsKey("acierto")){
+                boolean fallado = parametros.getBoolean("acierto");
+                if(!fallado){
+                    turno = !turno;
+                }
+            }
 
         }
+        jugadorTetxt = (TextView) findViewById(R.id.jugadorTetxt);
 
+        if(jugadoresArray == null){
+            jugadoresArray = jugadores.split(":");
+            jugador1 = jugadoresArray[1];
+            jugador2 = jugadoresArray[0];
+        }
 
-        String[] jugadoresArray = jugadores.split(":");
-        jugador1 = jugadoresArray[1];
-        jugador2 = jugadoresArray[0];
 
         layout = (ConstraintLayout) findViewById(R.id.tablero);
         tablero = (ImageView) findViewById(R.id.tablero_image_view);
@@ -87,6 +108,16 @@ public class mapa extends AppCompatActivity {
 
         asignarAvatar(ficha1, avatar1, true);
         asignarAvatar(ficha2, avatar2, false);
+
+        moverJugador();
+        cambiarJugador();
+
+
+
+    }
+
+    private void moverJugador() {
+        if(!turno){
 
 
         int tiempoTranscurrir = 1000;
@@ -101,18 +132,51 @@ public class mapa extends AppCompatActivity {
             }
         }, tiempoTranscurrir);//define el tiempo.
 
-        tiempoTranscurrir = 1500;
+
+        }else{
+            int tiempoTranscurrir = 1000;
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    y2 -=120;
+                    ficha2.moverFicha(x2, y2);
+                    handler.removeCallbacks(null);
+
+                }
+            }, tiempoTranscurrir);//define el tiempo.
+
+
+        }
+
+        int  tiempoTranscurrir = 1500;
         Handler handler1 = new Handler();
         handler1.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), ruleta.class);
-                startActivity(intent);
-                handler1.removeCallbacks(null);
+                if(!turno){
+                    Intent intent = new Intent(getApplicationContext(), ruleta.class);
+                    intent.putExtra("quesosJugador", (Serializable) quesosJ1);
+                    startActivity(intent);
+                    handler1.removeCallbacks(null);
+                }else{
+                    Intent intent = new Intent(getApplicationContext(), ruleta.class);
+                    intent.putExtra("quesosJugador",(Serializable) quesosJ2);
+                    startActivity(intent);
+                    handler1.removeCallbacks(null);
+                }
+
 
             }
         }, tiempoTranscurrir);
+    }
 
+    private void cambiarJugador() {
+        if(turno){
+            jugadorTetxt.setText(jugador1);
+        }else{
+            jugadorTetxt.setText(jugador2);
+        }
     }
 
     private void asignarAvatar(Ficha ficha1, String avatar, boolean jugador) {

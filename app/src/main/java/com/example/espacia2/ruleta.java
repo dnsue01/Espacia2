@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.Random;
 
 public class ruleta extends AppCompatActivity {
@@ -38,6 +39,9 @@ public class ruleta extends AppCompatActivity {
     boolean acierto;
 
     ImageView estrella1,estrella2,estrella3;
+
+    List<String> quesosJugador ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,12 +50,14 @@ public class ruleta extends AppCompatActivity {
 
         parametros = getIntent().getExtras();
         if(parametros !=null){
+
             acierto =  parametros.getBoolean("acierto");
             if(acierto){
                 contador++;
             }else{
                 contador = 0;
             }
+            quesosJugador=   (List<String>) getIntent().getSerializableExtra("quesosJugador");
         }
 
 
