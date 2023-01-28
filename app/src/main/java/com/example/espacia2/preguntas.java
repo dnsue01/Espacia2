@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,12 +35,13 @@ public class preguntas extends AppCompatActivity {
 
     TextView respuesta1,respuesta2,respuesta3,respuesta4;
 
-
+    Button comprobar;
     String[][] preguntas = new String[20][3];
     List<String> preguntasRe = new ArrayList<>();
     List<String> preguntasUsadas = new ArrayList<>();
 
     String respuestaVerdadera;
+    String respuestaElegida;
 
     String todasRespuestas;
     Random r = new Random();
@@ -66,7 +68,7 @@ public class preguntas extends AppCompatActivity {
         respuesta3 = findViewById(R.id.respuesta3);
         respuesta4 = findViewById(R.id.respuesta4);
 
-
+        comprobar = (Button) findViewById(R.id.comprobar);
 
         imagen =  findViewById(R.id.imageView3);
         GetColor(temaPregunta,imagen);
@@ -81,6 +83,7 @@ public class preguntas extends AppCompatActivity {
           @Override
           public void onClick(View view) {
 
+              respuestaElegida = respuesta1.getText().toString();
               respuesta1.setTextColor(Color.BLUE);
               respuesta2.setTextColor(Color.BLACK);
               respuesta3.setTextColor(Color.BLACK);
@@ -91,7 +94,7 @@ public class preguntas extends AppCompatActivity {
         respuesta2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                respuestaElegida = respuesta2.getText().toString();
                 respuesta2.setTextColor(Color.BLUE);
                 respuesta3.setTextColor(Color.BLACK);
                 respuesta4.setTextColor(Color.BLACK);
@@ -102,6 +105,8 @@ public class preguntas extends AppCompatActivity {
         respuesta3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                respuestaElegida = respuesta3.getText().toString();
+
                 respuesta3.setTextColor(Color.BLUE);
                 respuesta4.setTextColor(Color.BLACK);
                 respuesta1.setTextColor(Color.BLACK);
@@ -112,13 +117,43 @@ public class preguntas extends AppCompatActivity {
         respuesta4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { respuesta1.setTextColor(Color.BLUE);
+                respuestaElegida = respuesta4.getText().toString();
                 respuesta4.setTextColor(Color.BLUE);
                 respuesta1.setTextColor(Color.BLACK);
                 respuesta2.setTextColor(Color.BLACK);
                 respuesta3.setTextColor(Color.BLACK);
             }
         });
+        comprobar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                respuestaElegida = respuestaElegida.trim();
+                if(respuestaElegida!=null){
+                    if(respuestaElegida.equals(respuestaVerdadera)){
+                        Context context = getApplicationContext();
+                        CharSequence text = "Acierto!";
+                        int duration = Toast.LENGTH_SHORT;
 
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }else{
+                        Context context = getApplicationContext();
+                        CharSequence text = "Fallo! la respuesta era "+respuestaVerdadera;
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                }else{
+                    Context context = getApplicationContext();
+                    CharSequence text = "Necisitas elegir una respuesta!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+            }
+        });
     }
 
     private void getPreguntaAleatoria() {
@@ -130,7 +165,7 @@ public class preguntas extends AppCompatActivity {
             if(!preguntasUsadas.contains(preguntas[numeroR][0])){
 
                 respuestaVerdadera = preguntas[numeroR][1];
-
+                respuestaVerdadera = respuestaVerdadera.trim();
                 todasRespuestas = preguntas[numeroR][2];
 
                 RespuestasAleatorias(todasRespuestas);

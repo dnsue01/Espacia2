@@ -607,7 +607,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         ContentValues valuesArte3 = new ContentValues();
         valuesArte3.put(preguntas, "¿Quién es el autor de 'Poeta en Nueva York`? ");
         valuesArte3.put(respuestas, "Lorca");
-        valuesArte3.put(opciones, "Lorca, Giobany,Goethe,Lorca");
+        valuesArte3.put(opciones, "Lorca, Giobany,Goethe,Gaudi");
         valuesArte3.put(tipo, Arte);
         db.insert(tablaDB, null, valuesArte3);
 
