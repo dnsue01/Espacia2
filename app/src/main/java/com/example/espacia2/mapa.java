@@ -52,7 +52,7 @@ public class mapa extends AppCompatActivity {
 
 
     //primer jugador false
-    boolean turno = false;
+    static boolean turno = false;
 
 
     Bundle parametros;
