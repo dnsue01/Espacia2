@@ -1,11 +1,14 @@
 package com.example.espacia2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
@@ -16,6 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -98,8 +103,27 @@ public class ruleta extends AppCompatActivity {
                 estrella1.setImageResource(R.drawable.estrella);
                 estrella2.setImageResource(R.drawable.estrella);
                 estrella3.setImageResource(R.drawable.estrella);
+
+                escogerQueso();
                 break;
         }
+    }
+
+    private void escogerQueso() {
+
+        List<String> premiosFaltantes = new ArrayList<String>(Arrays.asList(premios));
+        if(quesosJugador != null){
+            premiosFaltantes.removeAll(quesosJugador);
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Premios que te faltan");
+        builder.setItems(premiosFaltantes.toArray(new String[premiosFaltantes.size()]), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String premioSeleccionado = premiosFaltantes.get(which);
+                Toast.makeText(getApplicationContext(), "Has seleccionado: " + premioSeleccionado, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void girar(){
@@ -123,14 +147,22 @@ public class ruleta extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
 
 
-                girando = false;
-                temaPregunta = premios[premios.length-(grado+1)];
+                int tiempoTranscurrir = 1000; //1 segundos
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run()
+                    {
 
-                Intent intent = new Intent(getApplicationContext(), preguntas.class);
-                intent.putExtra("tema", temaPregunta);
-                startActivity(intent);
-                finish();
+                        girando = false;
+                        temaPregunta = premios[premios.length-(grado+1)];
 
+                        Intent intent = new Intent(getApplicationContext(), preguntas.class);
+                        intent.putExtra("tema", temaPregunta);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, tiempoTranscurrir );//define el tiempo.
 
             }
 
