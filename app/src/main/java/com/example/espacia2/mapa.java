@@ -33,7 +33,7 @@ public class mapa extends AppCompatActivity {
 
 
     ImageView tablero;
-    ImageView EntretenimeintoFalso;
+    ImageView queso1,queso2,queso3,queso4,queso5,queso6;
 
 
     //variablles jugador1
@@ -74,6 +74,19 @@ public class mapa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
 
+        queso1 = (ImageView) findViewById(R.id.queso1);
+        queso2 = (ImageView) findViewById(R.id.queso2);
+        queso3 = (ImageView) findViewById(R.id.queso3);
+        queso4 = (ImageView) findViewById(R.id.queso4);
+        queso5 = (ImageView) findViewById(R.id.queso5);
+        queso6 = (ImageView) findViewById(R.id.queso6);
+
+        queso1.setImageResource(0);
+        queso2.setImageResource(0);
+        queso3.setImageResource(0);
+        queso4.setImageResource(0);
+        queso5.setImageResource(0);
+        queso6.setImageResource(0);
 
         //recoger los parametros pasados
         parametros = this.getIntent().getExtras();
@@ -87,7 +100,7 @@ public class mapa extends AppCompatActivity {
             if(parametros.containsKey("acierto")) {
                 boolean fallado = parametros.getBoolean("acierto");
 
-                if (!fallado) {
+                if (turno) {
                     quesosJ1 = (List<String>) getIntent().getSerializableExtra("quesosJugador");
                     if (quesosJ1 != null) {
                         for (String queso : quesosJ1) {
@@ -96,6 +109,7 @@ public class mapa extends AppCompatActivity {
                             int duration = Toast.LENGTH_SHORT;
                             Toast toast = Toast.makeText(context, text, duration);
                             toast.show();
+                            asignarQuesito(queso);
                         }
                     }
                 } else {
@@ -107,12 +121,12 @@ public class mapa extends AppCompatActivity {
                             int duration = Toast.LENGTH_SHORT;
                             Toast toast = Toast.makeText(context, text, duration);
                             toast.show();
+                            asignarQuesito(queso);
                         }
                     }
-
-                    if (!fallado) {
-                        turno = !turno;
-                    }
+                }
+                if (!fallado) {
+                    turno = !turno;
                 }
             }
 
@@ -126,6 +140,8 @@ public class mapa extends AppCompatActivity {
             jugador1 = jugadoresArray[1];
             jugador2 = jugadoresArray[0];
         }
+
+
 
 
         layout = (ConstraintLayout) findViewById(R.id.tablero);
@@ -162,7 +178,7 @@ public class mapa extends AppCompatActivity {
 
 
         }else{
-            int tiempoTranscurrir = 1000;
+            int tiempoTranscurrir = 1500;
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -177,7 +193,7 @@ public class mapa extends AppCompatActivity {
 
         }
 
-        int  tiempoTranscurrir = 1500;
+        int  tiempoTranscurrir = 2000;
         Handler handler1 = new Handler();
         handler1.postDelayed(new Runnable() {
             @Override
@@ -244,26 +260,26 @@ public class mapa extends AppCompatActivity {
     }
 
 
-    private void asignarQuesito(String quesito) {
+    private void asignarQuesito(String quesosJ) {
 
-        switch (quesito) {
+        switch (quesosJ) {
             case "Entretenimiento":
-
+                queso1.setImageResource(R.drawable.entretenimiento);
                 break;
             case "Ciencias y naturaleza":
-
+                queso2.setImageResource(R.drawable.cienciasynaturaleza);
                 break;
             case "Ocio y deporte":
-
+                queso3.setImageResource(R.drawable.ocioydeporte);
                 break;
             case "Historia":
-
+                queso4.setImageResource(R.drawable.historia);
                 break;
             case "Arte y Literatura":
-
+                queso5.setImageResource(R.drawable.arteyliteratura);
                 break;
             case "Geografia":
-
+                queso6.setImageResource(R.drawable.geografia);
                 break;
 
         }

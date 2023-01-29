@@ -55,7 +55,7 @@ public class preguntas extends AppCompatActivity {
 
     boolean acertada,constada;
     private CountDownTimer countDownTimer;
-    static List<String> quesosJugador  = new ArrayList<>();
+     List<String> quesosJugador  = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,6 +193,7 @@ public class preguntas extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), ruleta.class);
                             intent.putExtra("acierto", acertada);
                             intent.putExtra("queso", queso);
+                            intent.putExtra("quesosJugador", (Serializable) quesosJugador);
                             startActivity(intent);
                             finish();
                         }

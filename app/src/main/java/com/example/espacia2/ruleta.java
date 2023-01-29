@@ -53,7 +53,7 @@ public class ruleta extends AppCompatActivity {
 
     ImageView estrella1,estrella2,estrella3;
 
-    static List<String> quesosJugador  = new ArrayList<>();
+     List<String> quesosJugador  = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,7 @@ public class ruleta extends AppCompatActivity {
                 contador++;
             }else{
                 contador = 0;
+                quesosJugador.clear();
             }
             quesosJugador=   (List<String>) getIntent().getSerializableExtra("quesosJugador");
 
@@ -204,7 +205,7 @@ public class ruleta extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
 
 
-                int tiempoTranscurrir = 1000; //1 segundos
+                int tiempoTranscurrir = 500; //0.5 segundos
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
