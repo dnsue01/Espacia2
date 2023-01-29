@@ -765,7 +765,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
 
         ContentValues valuesArte10 = new ContentValues();
         valuesArte10.put(preguntas, "¿Qué profesión tenía Hércules Poiriot en las novelas de Agatha Christie?");
-        valuesArte10.put(respuestas, "");
+        valuesArte10.put(respuestas, "Detective");
         valuesArte10.put(opciones, "Policía,Médico,Paul Verlaine,Detective");
         valuesArte10.put(tipo,Arte);
         db.insert(tablaDB, null, valuesArte10);
@@ -793,7 +793,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
 
         ContentValues valuesArte14 = new ContentValues();
         valuesArte14.put(preguntas, "¿Qué describe una prosopografía?");
-        valuesArte14.put(respuestas, "");
+        valuesArte14.put(respuestas, "El físico de una persona");
         valuesArte14.put(opciones, "El carácter de una persona,El físico de una persona,El fisico y el carácter de una persona,Caricaturiza a una persona");
         valuesArte14.put(tipo,Arte);
         db.insert(tablaDB, null, valuesArte14);

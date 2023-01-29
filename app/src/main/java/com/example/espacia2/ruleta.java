@@ -46,13 +46,13 @@ public class ruleta extends AppCompatActivity {
 
     static int contador = 0;
 
-    boolean queso;
+    boolean queso = false;
 
     boolean acierto,acertada;
 
     ImageView estrella1,estrella2,estrella3;
 
-    List<String> quesosJugador ;
+    static List<String> quesosJugador  = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +70,10 @@ public class ruleta extends AppCompatActivity {
                 contador = 0;
             }
             quesosJugador=   (List<String>) getIntent().getSerializableExtra("quesosJugador");
+
+            if (quesosJugador == null) {
+                quesosJugador = new ArrayList<>();
+            }
 
             if(parametros.containsKey("queso")){
 

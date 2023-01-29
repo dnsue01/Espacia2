@@ -50,8 +50,9 @@ public class preguntas extends AppCompatActivity {
     Random r = new Random();
     int numeroR ;
 
+    boolean queso = false;
 
-    boolean acertada,constada,queso;
+    boolean acertada,constada;
     private CountDownTimer countDownTimer;
 
     @Override
@@ -65,7 +66,7 @@ public class preguntas extends AppCompatActivity {
         if(parametros !=null){
             temaPregunta = parametros.getString("tema");
             if(parametros.containsKey("queso")){
-                queso = parametros.getBoolean("queso");
+                queso = true;
             }
         }
 
@@ -95,12 +96,14 @@ public class preguntas extends AppCompatActivity {
             }
 
             public void onFinish() {
-                //acciones a realizar cuando se acaba el tiempo
-                acertada = false;
-                Intent intent = new Intent(getApplicationContext(), mapa.class);
-                intent.putExtra("acierto", acertada);
-                startActivity(intent);
-                finish();
+
+                    //acciones a realizar cuando se acaba el tiempo
+                    acertada = false;
+                    Intent intent = new Intent(getApplicationContext(), mapa.class);
+                    intent.putExtra("acierto", acertada);
+                    startActivity(intent);
+                    finish();
+
             }
         };
         countDownTimer.start();
@@ -158,19 +161,38 @@ public class preguntas extends AppCompatActivity {
                 if(respuestaElegida!=null){
                     if(respuestaElegida.equals(respuestaVerdadera)){
 
-                        Context context = getApplicationContext();
-                        CharSequence text = "Acierto!";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
+                        if(!queso){
+                            Context context = getApplicationContext();
+                            CharSequence text = "Acierto!";
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
 
-                        acertada = true;
-                        constada = true;
+                            acertada = true;
+                            constada = true;
 
-                        Intent intent = new Intent(getApplicationContext(), ruleta.class);
-                        intent.putExtra("acierto", acertada);
-                        startActivity(intent);
-                        finish();
+                            Intent intent = new Intent(getApplicationContext(), ruleta.class);
+                            intent.putExtra("acierto", acertada);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Context context = getApplicationContext();
+                            CharSequence text = "Acierto!";
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+
+                            acertada = true;
+                            constada = true;
+                            queso = true;
+
+                            Intent intent = new Intent(getApplicationContext(), ruleta.class);
+                            intent.putExtra("acierto", acertada);
+                            intent.putExtra("queso", queso);
+                            startActivity(intent);
+                            finish();
+                        }
+
                     }else{
                         Context context = getApplicationContext();
                         CharSequence text = "Fallo! la respuesta era "+respuestaVerdadera;
