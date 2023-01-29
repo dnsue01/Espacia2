@@ -26,7 +26,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
     final String historia = "Historia";
 
     final String Arte  = "Arte y Literatura";
-    final  String geografia = "Geografía";
+    final  String geografia = "Geografia";
 
 
 

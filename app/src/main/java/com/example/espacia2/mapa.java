@@ -28,7 +28,7 @@ public class mapa extends AppCompatActivity {
     //final 900
 
 
-    static String quesos[] = {"Entretenimiento", "Ciencias y naturaleza", "Ocio y deporte", "Historia", "Arte y Literatura", "Geografía"};
+    static String quesos[] = {"Entretenimiento", "Ciencias y naturaleza", "Ocio y deporte", "Historia", "Arte y Literatura", "Geografia"};
 
 
     ImageView tablero;
@@ -234,7 +234,7 @@ public class mapa extends AppCompatActivity {
             case "Arte y Literatura":
 
                 break;
-            case "Geografía":
+            case "Geografia":
 
                 break;
 

@@ -296,7 +296,7 @@ public class preguntas extends AppCompatActivity {
             case "Entretenimiento":
                 imagen.setImageResource(R.drawable.entretenimientofrag);
                 break;
-            case "Geografía":
+            case "Geografia":
                 imagen.setImageResource(R.drawable.geografiafrag);
                 break;
         }

@@ -9,14 +9,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,7 +33,8 @@ public class ruleta extends AppCompatActivity {
     ImageView ruleta;
     Button boton;
 
-    String premios[] = {"Entretenimiento","Ciencias y naturaleza","Ocio y deporte","Historia","Arte y Literatura","Geografía"};
+    String premios[] = {"Entretenimiento","Ciencias y naturaleza","Ocio y deporte","Historia","Arte y Literatura","Geografia"};
+    List<String> premiosFaltantes = new ArrayList<>(Arrays.asList("Entretenimiento", "Ciencias y naturaleza", "Ocio y deporte", "Historia", "Arte y Literatura", "Geografia"));
     int[] gradosSectores = new int[premios.length];
     Random random = new Random();
     int grado = 0;
@@ -104,27 +109,41 @@ public class ruleta extends AppCompatActivity {
                 estrella2.setImageResource(R.drawable.estrella);
                 estrella3.setImageResource(R.drawable.estrella);
 
-                escogerQueso();
+                mostrarPremiosFaltantes();
                 break;
         }
     }
 
-    private void escogerQueso() {
 
-        List<String> premiosFaltantes = new ArrayList<String>(Arrays.asList(premios));
-        if(quesosJugador != null){
-            premiosFaltantes.removeAll(quesosJugador);
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Premios que te faltan");
-        builder.setItems(premiosFaltantes.toArray(new String[premiosFaltantes.size()]), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String premioSeleccionado = premiosFaltantes.get(which);
-                Toast.makeText(getApplicationContext(), "Has seleccionado: " + premioSeleccionado, Toast.LENGTH_SHORT).show();
+
+        private void mostrarPremiosFaltantes() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Premios que te faltan");
+            List<String> premiosFaltantes = new ArrayList<>(Arrays.asList("Entretenimiento", "Ciencias y naturaleza", "Ocio y deporte", "Historia", "Arte y Literatura", "Geografia"));
+
+            if (quesosJugador != null) {
+                premiosFaltantes.removeAll(quesosJugador);
             }
-        });
-    }
+
+            if (premiosFaltantes.isEmpty()) {
+                Toast.makeText(this, "Tienes todos los premios", Toast.LENGTH_SHORT).show();
+            } else {
+                ImageListAdapter adapter = new ImageListAdapter(this, premiosFaltantes);
+                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String premioSeleccionado = premiosFaltantes.get(which);
+                        Toast.makeText(getApplicationContext(), "Has seleccionado: " + premioSeleccionado, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+
+        }
+
+
 
     private void girar(){
 
@@ -184,4 +203,36 @@ public class ruleta extends AppCompatActivity {
         }
     }
 
-}
+
+
+    public class ImageListAdapter extends ArrayAdapter<String> {
+        private final Context context;
+        private final List<String> premiosFaltantes;
+
+        public ImageListAdapter(Context context, List<String> premiosFaltantes) {
+            super(context, -1, premiosFaltantes);
+            this.context = context;
+            this.premiosFaltantes = premiosFaltantes;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rowView = inflater.inflate(R.layout.image_list_item, parent, false);
+            TextView textView = rowView.findViewById(R.id.premio_text);
+            ImageView imageView = rowView.findViewById(R.id.premio_icon);
+            textView.setText(premiosFaltantes.get(position));
+            int resID = context.getResources().getIdentifier(premiosFaltantes.get(position).replace(" ","").toLowerCase(), "drawable", context.getPackageName());
+            imageView.setImageResource(resID);
+            return rowView;
+        }
+    }
+
+
+
+
+
+
+    }
+
