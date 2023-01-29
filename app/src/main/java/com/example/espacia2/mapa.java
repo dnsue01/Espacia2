@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +37,7 @@ public class mapa extends AppCompatActivity {
     ImageView tablero;
     ImageView queso1,queso2,queso3,queso4,queso5,queso6;
 
+    Button jugar;
 
     //variablles jugador1
     Ficha ficha1;
@@ -67,7 +70,7 @@ public class mapa extends AppCompatActivity {
     static String jugador2 = "";
     static String avatar2;
     ConstraintLayout layout;
-    boolean fallado;
+    boolean fallado = true;
     TextView jugadorTetxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,17 +101,12 @@ public class mapa extends AppCompatActivity {
             }
 
             if(parametros.containsKey("acierto")) {
-                boolean fallado = parametros.getBoolean("acierto");
+                 fallado = parametros.getBoolean("acierto");
 
-                if (turno) {
+                if (!turno) {
                     quesosJ1 = (List<String>) getIntent().getSerializableExtra("quesosJugador");
                     if (quesosJ1 != null) {
                         for (String queso : quesosJ1) {
-                            Context context = getApplicationContext();
-                            CharSequence text = queso;
-                            int duration = Toast.LENGTH_SHORT;
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.show();
                             asignarQuesito(queso);
                         }
                     }
@@ -116,18 +114,11 @@ public class mapa extends AppCompatActivity {
                     quesosJ2 = (List<String>) getIntent().getSerializableExtra("quesosJugador");
                     if (quesosJ2 != null) {
                         for (String queso : quesosJ2) {
-                            Context context = getApplicationContext();
-                            CharSequence text = queso;
-                            int duration = Toast.LENGTH_SHORT;
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.show();
                             asignarQuesito(queso);
                         }
                     }
                 }
-                if (!fallado) {
-                    turno = !turno;
-                }
+
             }
 
 
@@ -139,6 +130,7 @@ public class mapa extends AppCompatActivity {
             jugadoresArray = jugadores.split(":");
             jugador1 = jugadoresArray[1];
             jugador2 = jugadoresArray[0];
+
         }
 
 
@@ -153,11 +145,31 @@ public class mapa extends AppCompatActivity {
         asignarAvatar(ficha1, avatar1, true);
         asignarAvatar(ficha2, avatar2, false);
 
-        moverJugador();
+        jugar = (Button) findViewById(R.id.jugar);
+
+        jugar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!fallado) {
+                    turno = !turno;
+                }
+
+                if(!turno){
+                    Intent intent = new Intent(getApplicationContext(), ruleta.class);
+                    intent.putExtra("quesosJugador", (Serializable) quesosJ1);
+                    startActivity(intent);
+
+                }else{
+                    Intent intent = new Intent(getApplicationContext(), ruleta.class);
+                    intent.putExtra("quesosJugador",(Serializable) quesosJ2);
+                    startActivity(intent);
+                }
+            }
+        });
+
         cambiarJugador();
-
-
-
+        moverJugador();
     }
 
     private void moverJugador() {
@@ -197,33 +209,19 @@ public class mapa extends AppCompatActivity {
 
         }
 
-        int  tiempoTranscurrir = 2000;
-        Handler handler1 = new Handler();
-        handler1.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(!turno){
-                    Intent intent = new Intent(getApplicationContext(), ruleta.class);
-                    intent.putExtra("quesosJugador", (Serializable) quesosJ1);
-                    startActivity(intent);
-                    handler1.removeCallbacks(null);
-                }else{
-                    Intent intent = new Intent(getApplicationContext(), ruleta.class);
-                    intent.putExtra("quesosJugador",(Serializable) quesosJ2);
-                    startActivity(intent);
-                    handler1.removeCallbacks(null);
-                }
 
-
-            }
-        }, tiempoTranscurrir);
     }
 
     private void cambiarJugador() {
         if(!turno){
-            jugadorTetxt.setText("Tu turno "+jugador1);
+            jugadorTetxt.setText("Astronautas de  "+jugador1);
+            jugar.setText(jugar.getText()+" " +jugador2);
         }else{
-            jugadorTetxt.setText("Tu turno "+jugador2);
+            jugadorTetxt.setText("Astronautas de "+jugador2);
+            jugar.setText(jugar.getText()+" " +jugador1);
+        }
+        if(fallado){
+            jugar.setText("JUGAR " +jugador1);
         }
     }
 
