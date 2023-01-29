@@ -46,6 +46,8 @@ public class ruleta extends AppCompatActivity {
 
     static int contador = 0;
 
+    boolean queso;
+
     boolean acierto;
 
     ImageView estrella1,estrella2,estrella3;
@@ -133,7 +135,12 @@ public class ruleta extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String premioSeleccionado = premiosFaltantes.get(which);
-                        Toast.makeText(getApplicationContext(), "Has seleccionado: " + premioSeleccionado, Toast.LENGTH_SHORT).show();
+                        temaPregunta = premioSeleccionado;
+                        Intent intent = new Intent(getApplicationContext(), preguntas.class);
+                        intent.putExtra("tema", temaPregunta);
+                        intent.putExtra("queso", queso);
+                        startActivity(intent);
+                        finish();
                     }
                 });
 

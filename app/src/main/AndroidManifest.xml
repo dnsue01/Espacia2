@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Espacia2"
         android:screenOrientation="portrait"
+
         tools:targetApi="31">
         <activity
             android:name=".preguntas"
@@ -59,6 +60,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <service android:name=".MusicService"/>
+
     </application>
 
 </manifest>

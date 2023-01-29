@@ -50,7 +50,8 @@ public class preguntas extends AppCompatActivity {
     Random r = new Random();
     int numeroR ;
 
-    boolean acertada,constada;
+     ;
+    boolean acertada,constada,queso;
     private CountDownTimer countDownTimer;
 
     @Override
@@ -63,6 +64,9 @@ public class preguntas extends AppCompatActivity {
         Bundle parametros = this.getIntent().getExtras();
         if(parametros !=null){
             temaPregunta = parametros.getString("tema");
+            if(parametros.containsKey("queso")){
+                queso = parametros.getBoolean("queso");
+            }
         }
 
         fondo = findViewById(R.id.fondo);

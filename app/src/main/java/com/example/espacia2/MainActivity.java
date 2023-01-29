@@ -14,8 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.saturno);
-        mediaPlayer.start();
+        Intent intent = new Intent(this, MusicService.class);
+        startService(intent);
 
         int tiempoTranscurrir = 3000; //5 segundos
         Handler handler = new Handler();
