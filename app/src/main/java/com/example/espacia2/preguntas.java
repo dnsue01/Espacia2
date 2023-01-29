@@ -138,7 +138,8 @@ public class preguntas extends AppCompatActivity {
 
         respuesta4.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { respuesta1.setTextColor(Color.BLUE);
+            public void onClick(View view) {
+
                 respuestaElegida = respuesta4.getText().toString();
                 respuesta4.setTextColor(Color.BLUE);
                 respuesta1.setTextColor(Color.BLACK);

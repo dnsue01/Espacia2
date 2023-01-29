@@ -63,7 +63,7 @@ public class mapa extends AppCompatActivity {
 
     static String jugador1;
     static String avatar1 = "";
-    static String jugador2;
+    static String jugador2 = "";
     static String avatar2;
     ConstraintLayout layout;
     boolean fallado;
@@ -172,7 +172,7 @@ public class mapa extends AppCompatActivity {
     }
 
     private void cambiarJugador() {
-        if(turno){
+        if(!turno){
             jugadorTetxt.setText(jugador1);
         }else{
             jugadorTetxt.setText(jugador2);
