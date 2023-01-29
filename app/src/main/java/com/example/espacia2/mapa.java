@@ -169,9 +169,11 @@ public class mapa extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                y1 += 75;
-                ficha1.moverFicha(x1, y1);
-                handler.removeCallbacks(null);
+                if(quesosJ1.size()%2 == 0){
+                    y1 += 75;
+                    ficha1.moverFicha(x1, y1);
+                    handler.removeCallbacks(null);
+                }
 
             }
         }, tiempoTranscurrir);//define el tiempo.
@@ -183,9 +185,11 @@ public class mapa extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    y2 -=120;
-                    ficha2.moverFicha(x2, y2);
-                    handler.removeCallbacks(null);
+                    if(quesosJ2.size()%2 == 0){
+                        y2 -=120;
+                        ficha2.moverFicha(x2, y2);
+                        handler.removeCallbacks(null);
+                    }
 
                 }
             }, tiempoTranscurrir);//define el tiempo.
