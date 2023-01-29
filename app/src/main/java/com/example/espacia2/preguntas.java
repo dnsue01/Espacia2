@@ -29,7 +29,7 @@ public class preguntas extends AppCompatActivity {
     ConstraintLayout fondo;
 
 
-    String temaPregunta;
+    static String temaPregunta;
 
 
     ImageView imagen;
@@ -50,7 +50,7 @@ public class preguntas extends AppCompatActivity {
     Random r = new Random();
     int numeroR ;
 
-     ;
+
     boolean acertada,constada,queso;
     private CountDownTimer countDownTimer;
 

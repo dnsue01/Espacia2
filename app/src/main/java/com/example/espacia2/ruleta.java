@@ -40,7 +40,7 @@ public class ruleta extends AppCompatActivity {
     int grado = 0;
     boolean girando = false;
 
-    String temaPregunta;
+    static  String temaPregunta;
 
     Bundle parametros;
 
@@ -48,7 +48,7 @@ public class ruleta extends AppCompatActivity {
 
     boolean queso;
 
-    boolean acierto;
+    boolean acierto,acertada;
 
     ImageView estrella1,estrella2,estrella3;
 
@@ -70,6 +70,31 @@ public class ruleta extends AppCompatActivity {
                 contador = 0;
             }
             quesosJugador=   (List<String>) getIntent().getSerializableExtra("quesosJugador");
+
+            if(parametros.containsKey("queso")){
+
+                if(parametros.getBoolean("queso")){
+                    quesosJugador.add(temaPregunta);
+                    contador = 0;
+
+                    for (String queso : quesosJugador) {
+                        Context context = getApplicationContext();
+                        CharSequence text = queso;
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+
+                    }
+
+                }else{
+                    acertada = false;
+                    Intent intent = new Intent(getApplicationContext(), mapa.class);
+                    intent.putExtra("acierto", acertada);
+                    startActivity(intent);
+                    finish();
+                }
+            }
         }
 
 
