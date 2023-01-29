@@ -173,9 +173,9 @@ public class mapa extends AppCompatActivity {
 
     private void cambiarJugador() {
         if(!turno){
-            jugadorTetxt.setText(jugador1);
+            jugadorTetxt.setText("Tu turno "+jugador1);
         }else{
-            jugadorTetxt.setText(jugador2);
+            jugadorTetxt.setText("Tu turno "+jugador2);
         }
     }
 

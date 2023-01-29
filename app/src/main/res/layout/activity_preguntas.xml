@@ -24,8 +24,8 @@
 
     <TextView
         android:id="@+id/textViewPregunta"
-        android:layout_width="317dp"
-        android:layout_height="102dp"
+        android:layout_width="322dp"
+        android:layout_height="121dp"
         android:capitalize="none"
         android:text="TextView"
         android:textAlignment="center"
@@ -33,29 +33,30 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245" />
+        app:layout_constraintVertical_bias="0.232" />
 
     <TextView
         android:id="@+id/respuesta1"
-        android:layout_width="304dp"
-        android:layout_height="68dp"
+        android:layout_width="316dp"
+        android:layout_height="79dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="#0B0B0B"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.46" />
 
     <TextView
         android:id="@+id/respuesta2"
-        android:layout_width="294dp"
-        android:layout_height="65dp"
+        android:layout_width="321dp"
+        android:layout_height="84dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="#040404"
@@ -69,8 +70,8 @@
 
     <TextView
         android:id="@+id/respuesta3"
-        android:layout_width="311dp"
-        android:layout_height="61dp"
+        android:layout_width="323dp"
+        android:layout_height="72dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="#0B0B0B"
@@ -84,8 +85,8 @@
 
     <TextView
         android:id="@+id/respuesta4"
-        android:layout_width="308dp"
-        android:layout_height="69dp"
+        android:layout_width="327dp"
+        android:layout_height="74dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="#000000"
