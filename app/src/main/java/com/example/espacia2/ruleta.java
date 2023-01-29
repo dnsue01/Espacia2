@@ -23,6 +23,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -85,7 +86,6 @@ public class ruleta extends AppCompatActivity {
                         Context context = getApplicationContext();
                         CharSequence text = queso;
                         int duration = Toast.LENGTH_SHORT;
-
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
 
@@ -95,6 +95,7 @@ public class ruleta extends AppCompatActivity {
                     acertada = false;
                     Intent intent = new Intent(getApplicationContext(), mapa.class);
                     intent.putExtra("acierto", acertada);
+                    intent.putExtra("quesosJugador", (Serializable) quesosJugador);
                     startActivity(intent);
                     finish();
                 }
@@ -168,6 +169,7 @@ public class ruleta extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), preguntas.class);
                         intent.putExtra("tema", temaPregunta);
                         intent.putExtra("queso", queso);
+                        intent.putExtra("quesosJugador", (Serializable) quesosJugador);
                         startActivity(intent);
                         finish();
                     }
@@ -214,6 +216,7 @@ public class ruleta extends AppCompatActivity {
 
                         Intent intent = new Intent(getApplicationContext(), preguntas.class);
                         intent.putExtra("tema", temaPregunta);
+                        intent.putExtra("quesosJugador", (Serializable) quesosJugador);
                         startActivity(intent);
                         finish();
                     }

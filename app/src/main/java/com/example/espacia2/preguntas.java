@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -54,7 +55,7 @@ public class preguntas extends AppCompatActivity {
 
     boolean acertada,constada;
     private CountDownTimer countDownTimer;
-
+    static List<String> quesosJugador  = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +69,7 @@ public class preguntas extends AppCompatActivity {
             if(parametros.containsKey("queso")){
                 queso = true;
             }
+            quesosJugador=   (List<String>) getIntent().getSerializableExtra("quesosJugador");
         }
 
         fondo = findViewById(R.id.fondo);
@@ -101,6 +103,7 @@ public class preguntas extends AppCompatActivity {
                     acertada = false;
                     Intent intent = new Intent(getApplicationContext(), mapa.class);
                     intent.putExtra("acierto", acertada);
+                    intent.putExtra("quesosJugador", (Serializable) quesosJugador);
                     startActivity(intent);
                     finish();
 
@@ -173,6 +176,7 @@ public class preguntas extends AppCompatActivity {
 
                             Intent intent = new Intent(getApplicationContext(), ruleta.class);
                             intent.putExtra("acierto", acertada);
+                            intent.putExtra("quesosJugador", (Serializable) quesosJugador);
                             startActivity(intent);
                             finish();
                         }else{
@@ -204,6 +208,7 @@ public class preguntas extends AppCompatActivity {
                         constada = true;
                         Intent intent = new Intent(getApplicationContext(), mapa.class);
                         intent.putExtra("acierto", acertada);
+                        intent.putExtra("quesosJugador", (Serializable) quesosJugador);
                         startActivity(intent);
                         finish();
                     }

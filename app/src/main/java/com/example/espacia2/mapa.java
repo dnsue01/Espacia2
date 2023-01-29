@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -83,12 +84,39 @@ public class mapa extends AppCompatActivity {
                 avatar2 = parametros.getString("avatar2");
             }
 
-            if(parametros.containsKey("acierto")){
+            if(parametros.containsKey("acierto")) {
                 boolean fallado = parametros.getBoolean("acierto");
-                if(!fallado){
-                    turno = !turno;
+
+                if (!fallado) {
+                    quesosJ1 = (List<String>) getIntent().getSerializableExtra("quesosJugador");
+                    if (quesosJ1 != null) {
+                        for (String queso : quesosJ1) {
+                            Context context = getApplicationContext();
+                            CharSequence text = queso;
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                        }
+                    }
+                } else {
+                    quesosJ2 = (List<String>) getIntent().getSerializableExtra("quesosJugador");
+                    if (quesosJ2 != null) {
+                        for (String queso : quesosJ2) {
+                            Context context = getApplicationContext();
+                            CharSequence text = queso;
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                        }
+                    }
+
+                    if (!fallado) {
+                        turno = !turno;
+                    }
                 }
             }
+
+
 
         }
         jugadorTetxt = (TextView) findViewById(R.id.jugadorTetxt);
