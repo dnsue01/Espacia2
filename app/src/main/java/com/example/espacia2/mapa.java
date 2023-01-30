@@ -196,34 +196,75 @@ public class mapa extends AppCompatActivity {
 
         String filename =jugadores + ".txt";
         File file = new File(getApplicationContext().getFilesDir(), filename);
-        if (file.exists()) {
+        if (file.length()>0) {
             try {
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 String line;
-
                 while ((line = br.readLine()) != null) {
                     String[] parts = line.split(":");
-                    if (parts[0].equals("quesosJ1")) {
+
+                    if (parts[0].contains("quesosJ1")) {
                         String valor = parts[1].substring(1, parts[1].length() - 1);
                         if (!valor.isEmpty()) {
                             quesosJ1 = Arrays.asList(valor.split(","));
                         }
-                    } else if (parts[0].equals("quesosJ2")) {
+                    } else if (parts[0].contains("quesosJ2")) {
                         String valor = parts[1].substring(1, parts[1].length() - 1);
                         if (!valor.isEmpty()) {
                             quesosJ2 = Arrays.asList(valor.split(","));
                         }
 
-                    } else if (parts[0].equals("turno")) {
-                        turno = Integer.parseInt(parts[1]) == 1;
-                    } else if (parts[0].equals("x1")) {
-                        x1 = Integer.parseInt(parts[1]);
-                    } else if (parts[0].equals("y1")) {
-                        y1 = Integer.parseInt(parts[1]);
-                    } else if (parts[0].equals("x2")) {
-                        x2 = Integer.parseInt(parts[1]);
-                    } else if (parts[0].equals("y2")) {
-                        y2 = Integer.parseInt(parts[1]);
+                    } else if (parts[0].contains("turno")) {
+
+
+                        switch (parts[0].toString()){
+                            case "turno=false":
+                                turno = false;
+                            break;
+                            case "turno=true":
+                                turno = true;
+                                break;
+                        }
+
+
+                    } else if (parts[0].contains("x1")) {
+
+                        String input = parts[0];
+                        int index = input.indexOf("=");
+                        String value = input.substring(index + 1);
+
+                        x1 = Integer.parseInt(value);
+                    } else if (parts[0].contains("y1")) {
+
+                        String input = parts[0];
+                        int index = input.indexOf("=");
+                        String value = input.substring(index + 1);
+
+                        y1 = Integer.parseInt(value);
+                    } else if (parts[0].contains("x2")) {
+
+                        String input = parts[0];
+                        int index = input.indexOf("=");
+                        String value = input.substring(index + 1);
+
+                        x2 = Integer.parseInt(value);
+                    } else if (parts[0].contains("y2")) {
+
+                        String input = parts[0];
+                        int index = input.indexOf("=");
+                        String value = input.substring(index + 1);
+
+                        y2 = Integer.parseInt(value);
+                    } else if (parts[0].contains("avatar1")) {
+                        String input = parts[0];
+                        int index = input.indexOf("=");
+                        String value = input.substring(index + 1);
+                        avatar1 = value;
+                    } else if (parts[0].contains("avatar2")) {
+                        String input = parts[0];
+                        int index = input.indexOf("=");
+                        String value = input.substring(index + 1);
+                        avatar2 = value;
                     }
                 }
                 br.close();
@@ -383,6 +424,10 @@ public class mapa extends AppCompatActivity {
             bw.write("y1=" + y1);
             bw.newLine();
             bw.write("y2=" + y2);
+            bw.newLine();
+            bw.write("avatar1=" + avatar1);
+            bw.newLine();
+            bw.write("avatar2=" + avatar2);
             bw.close();
             fw.close();
 
