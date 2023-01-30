@@ -104,7 +104,7 @@ public class mapa extends AppCompatActivity {
         parametros = this.getIntent().getExtras();
         if (parametros != null) {
             jugadores = parametros.getString("jugadores");
-            comprobacionArchivo();
+           // comprobacionArchivo();
             if(avatar1.equals("")){
                 avatar1 = parametros.getString("avatar1");
                 avatar2 = parametros.getString("avatar2");
