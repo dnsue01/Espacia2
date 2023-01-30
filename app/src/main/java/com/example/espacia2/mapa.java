@@ -13,12 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class mapa extends AppCompatActivity {
@@ -81,6 +85,7 @@ public class mapa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
 
+
         queso1 = (ImageView) findViewById(R.id.queso1);
         queso2 = (ImageView) findViewById(R.id.queso2);
         queso3 = (ImageView) findViewById(R.id.queso3);
@@ -99,6 +104,7 @@ public class mapa extends AppCompatActivity {
         parametros = this.getIntent().getExtras();
         if (parametros != null) {
             jugadores = parametros.getString("jugadores");
+            comprobacionArchivo();
             if(avatar1.equals("")){
                 avatar1 = parametros.getString("avatar1");
                 avatar2 = parametros.getString("avatar2");
@@ -132,8 +138,8 @@ public class mapa extends AppCompatActivity {
 
         if(jugadoresArray == null){
             jugadoresArray = jugadores.split(":");
-            jugador1 = jugadoresArray[1];
-            jugador2 = jugadoresArray[0];
+            jugador1 = jugadoresArray[0];
+            jugador2 = jugadoresArray[1];
 
         }
 
@@ -177,12 +183,63 @@ public class mapa extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 grabar();
+
             }
         });
 
         cambiarJugador();
         moverJugador();
     }
+
+    private void comprobacionArchivo() {
+
+
+        String filename =jugadores + ".txt";
+        File file = new File(getApplicationContext().getFilesDir(), filename);
+        if (file.exists()) {
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                String line;
+
+                while ((line = br.readLine()) != null) {
+                    String[] parts = line.split(":");
+                    if (parts[0].equals("quesosJ1")) {
+                        String valor = parts[1].substring(1, parts[1].length() - 1);
+                        if (!valor.isEmpty()) {
+                            quesosJ1 = Arrays.asList(valor.split(","));
+                        }
+                    } else if (parts[0].equals("quesosJ2")) {
+                        String valor = parts[1].substring(1, parts[1].length() - 1);
+                        if (!valor.isEmpty()) {
+                            quesosJ2 = Arrays.asList(valor.split(","));
+                        }
+
+                    } else if (parts[0].equals("turno")) {
+                        turno = Integer.parseInt(parts[1]) == 1;
+                    } else if (parts[0].equals("x1")) {
+                        x1 = Integer.parseInt(parts[1]);
+                    } else if (parts[0].equals("y1")) {
+                        y1 = Integer.parseInt(parts[1]);
+                    } else if (parts[0].equals("x2")) {
+                        x2 = Integer.parseInt(parts[1]);
+                    } else if (parts[0].equals("y2")) {
+                        y2 = Integer.parseInt(parts[1]);
+                    }
+                }
+                br.close();
+                // Aquí puedes asignar los valores leídos a las variables que necesitas
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+
+
+
+
 
     private void moverJugador() {
         if(!turno){
@@ -301,29 +358,56 @@ public class mapa extends AppCompatActivity {
     }
 
     public void grabar(){
+        String nomarchivo = jugadores + ".txt";
         try {
-            FileWriter fw = new FileWriter(jugadores+".txt");
-            fw.write("quesosJ1: " + quesosJ1.toString() + "\n");
-            fw.write("quesosJ2: " + quesosJ2.toString() + "\n");
-            fw.write("turno: " + turno + "\n");
-            fw.write("x1: " + x1 + "\n");
-            fw.write("x2: " + x2 + "\n");
-            fw.write("y1: " + y1 + "\n");
-            fw.write("y2: " + y2 + "\n");
+            File file = new File(getApplicationContext().getFilesDir(), nomarchivo);
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            if (quesosJ1.size() > 0) {
+                bw.write("quesosJ1=" + quesosJ1.toString());
+                bw.newLine();
+            }
+
+            if (quesosJ2.size() > 0) {
+                bw.write("quesosJ2=" + quesosJ2.toString());
+                bw.newLine();
+            }
+
+            bw.write("turno=" + turno);
+            bw.newLine();
+            bw.write("x1=" + x1);
+            bw.newLine();
+            bw.write("x2=" + x2);
+            bw.newLine();
+            bw.write("y1=" + y1);
+            bw.newLine();
+            bw.write("y2=" + y2);
+            bw.close();
             fw.close();
 
             Context context = getApplicationContext();
-            CharSequence text = "Guardado !! ";
+            CharSequence text = "guardado";
             int duration = Toast.LENGTH_SHORT;
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
+
+
     }
-
-
-
 }
+
+
+
+
+
+
+
 

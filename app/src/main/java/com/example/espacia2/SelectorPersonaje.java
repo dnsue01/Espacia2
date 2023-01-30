@@ -45,8 +45,8 @@ public class SelectorPersonaje extends AppCompatActivity {
 
 
         String[] jugadoresArray = jugadores.split(":");
-        jugador1 = jugadoresArray[1];
-        jugador2 = jugadoresArray[0];
+        jugador1 = jugadoresArray[0];
+        jugador2 = jugadoresArray[1];
 
 
 

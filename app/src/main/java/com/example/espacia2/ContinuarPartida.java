@@ -22,8 +22,7 @@ public class ContinuarPartida extends AppCompatActivity {
 
     TextView jugador1,jugador2;
 
-    String[][] preguntas = new String[20][3];
-    List<String> preguntasRe = new ArrayList<>();
+
     String jugadores;
 
     @Override
@@ -38,43 +37,10 @@ public class ContinuarPartida extends AppCompatActivity {
 
 
 
-        BaseDeDatos datab= new BaseDeDatos(ContinuarPartida.this);
-        SQLiteDatabase db= datab.getWritableDatabase();
-
-        datab.insertDB();
-        //Para sacar las respuestas con las preguntas simplemente seria cambiando el select y añadiendo un + despues de PREGUNTAS
-        String selectQuery = "SELECT PREGUNTAS , RESPUESTAS,OPCIONES FROM  Preguntas_Respuestas_Opciones  WHERE TIPO  = 'Geografia'";
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        //Recorro el cursor uno por uno para sacar los datos de uno en uno
-        int i = 0;
-        if(cursor.moveToFirst()){
-            do{
-                String pregunta = cursor.getString(0);
-                String respuesta = cursor.getString(1);
-                String op = cursor.getString(2);
-
-                     if(!preguntasRe.contains(pregunta)){
-
-                    preguntas[i][0] = pregunta;
-                    preguntas[i][1] = respuesta;
-                    preguntas[i][2] = op;
-                    preguntasRe.add(pregunta);
-
-                    i++;
-                }
-
-                //Aquí puedes hacer lo que quieras con las preguntas y respuestas recuperadas
-            }while(cursor.moveToNext());
-        }
-        cursor.close();
 
 
-        Context context = getApplicationContext();
-        CharSequence text = "Pregunta "+preguntas[0][0]+" Respuesta v"+preguntas[0][1];
-        int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+
 
 
         continuar.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +51,7 @@ public class ContinuarPartida extends AppCompatActivity {
 
                 if(usuario1.equals("") || usuario2.equals("") || usuario1.contains(":") || usuario2.contains(":") ){
                     Context context = getApplicationContext();
-                    CharSequence text = "No entra";
+                    CharSequence text = "Debes de escribir algo";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);
@@ -93,7 +59,7 @@ public class ContinuarPartida extends AppCompatActivity {
 
                 }else{
                     jugadores = usuario1+":"+usuario2;
-                    comprobar(getApplicationContext());
+                    comprobar(view);
                 }
             }
         });
@@ -110,21 +76,26 @@ public class ContinuarPartida extends AppCompatActivity {
 
 
 
-    public void comprobar(Context context){
+    public void comprobar(View view){
 
         String nomarchivo = jugadores + ".txt";
 
-        File file = new File(context.getFilesDir(), nomarchivo);
+        File file = new File(getApplicationContext().getFilesDir(), nomarchivo);
 
         // Si el archivo no existe
         if (!file.exists()) {
 
-            context = getApplicationContext();
+
             CharSequence text = "no hay ninguna partida con estos jugadores preuba a crear una";
             int duration = Toast.LENGTH_SHORT;
 
-            Toast toast = Toast.makeText(context, text, duration);
+            Toast toast = Toast.makeText(getApplicationContext(), text, duration);
             toast.show();
+        }else{
+            Intent intent = new Intent(view.getContext(), mapa.class);
+            intent.putExtra("jugadores", jugadores);
+            startActivity(intent);
+            finish();
         }
     }
 }
