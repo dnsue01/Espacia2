@@ -205,15 +205,17 @@ public class mapa extends AppCompatActivity {
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 String line;
                 while ((line = br.readLine()) != null) {
+
+
                     String[] parts = line.split(":");
 
                     if (parts[0].contains("quesosJ1")) {
-                        String valor = parts[1].substring(1, parts[1].length() - 1);
+                        String valor = parts[0].substring(1, parts[0].length() - 1);
                         if (!valor.isEmpty()) {
                             quesosJ1 = Arrays.asList(valor.split(","));
                         }
                     } else if (parts[0].contains("quesosJ2")) {
-                        String valor = parts[1].substring(1, parts[1].length() - 1);
+                        String valor = parts[0].substring(1, parts[0].length() - 1);
                         if (!valor.isEmpty()) {
                             quesosJ2 = Arrays.asList(valor.split(","));
                         }
@@ -409,12 +411,12 @@ public class mapa extends AppCompatActivity {
             BufferedWriter bw = new BufferedWriter(fw);
 
             if (quesosJ1.size() > 0) {
-                bw.write("quesosJ1=" + quesosJ1.toString());
+                bw.write("quesosJ1=" + quesosJ1);
                 bw.newLine();
             }
 
             if (quesosJ2.size() > 0) {
-                bw.write("quesosJ2=" + quesosJ2.toString());
+                bw.write("quesosJ2=" + quesosJ2);
                 bw.newLine();
             }
 

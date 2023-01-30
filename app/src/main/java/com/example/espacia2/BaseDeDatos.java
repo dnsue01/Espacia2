@@ -365,7 +365,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         ContentValues valuesHistoria10 = new ContentValues();
         valuesHistoria10.put(preguntas, "¿Quién fue el fundador del Imperio Romano?");
         valuesHistoria10.put(respuestas, "Romulo");
-        valuesHistoria10.put(opciones, "Romulo, Julio César, Nerón;León");
+        valuesHistoria10.put(opciones, "Romulo, Julio César, Nerón,León");
         valuesHistoria10.put(tipo, historia);
         db.insert(tablaDB, null, valuesHistoria10);
 
