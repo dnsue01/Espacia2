@@ -13,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +41,7 @@ public class mapa extends AppCompatActivity {
     ImageView tablero;
     ImageView queso1,queso2,queso3,queso4,queso5,queso6;
 
-    Button jugar;
+    Button jugar,guardar;
 
     //variablles jugador1
     Ficha ficha1;
@@ -146,6 +150,7 @@ public class mapa extends AppCompatActivity {
         asignarAvatar(ficha2, avatar2, false);
 
         jugar = (Button) findViewById(R.id.jugar);
+        guardar = (Button) findViewById(R.id.guardar);
 
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +170,13 @@ public class mapa extends AppCompatActivity {
                     intent.putExtra("quesosJugador",(Serializable) quesosJ2);
                     startActivity(intent);
                 }
+            }
+        });
+
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                grabar();
             }
         });
 
@@ -287,5 +299,31 @@ public class mapa extends AppCompatActivity {
         }
 
     }
+
+    public void grabar(){
+        try {
+            FileWriter fw = new FileWriter(jugadores+".txt");
+            fw.write("quesosJ1: " + quesosJ1.toString() + "\n");
+            fw.write("quesosJ2: " + quesosJ2.toString() + "\n");
+            fw.write("turno: " + turno + "\n");
+            fw.write("x1: " + x1 + "\n");
+            fw.write("x2: " + x2 + "\n");
+            fw.write("y1: " + y1 + "\n");
+            fw.write("y2: " + y2 + "\n");
+            fw.close();
+
+            Context context = getApplicationContext();
+            CharSequence text = "Guardado !! ";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }
 
