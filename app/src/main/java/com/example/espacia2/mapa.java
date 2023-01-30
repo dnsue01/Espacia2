@@ -110,6 +110,10 @@ public class mapa extends AppCompatActivity {
                 avatar2 = parametros.getString("avatar2");
             }
 
+            if(parametros.containsKey("continuar")){
+                comprobacionArchivo();
+            }
+
             if(parametros.containsKey("acierto")) {
                  fallado = parametros.getBoolean("acierto");
 
@@ -196,7 +200,7 @@ public class mapa extends AppCompatActivity {
 
         String filename =jugadores + ".txt";
         File file = new File(getApplicationContext().getFilesDir(), filename);
-        if (file.length()>0) {
+
             try {
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 String line;
@@ -272,7 +276,7 @@ public class mapa extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+
     }
 
 
@@ -284,7 +288,6 @@ public class mapa extends AppCompatActivity {
 
     private void moverJugador() {
         if(!turno){
-
 
         int tiempoTranscurrir = 1000;
         Handler handler = new Handler();

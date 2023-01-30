@@ -24,6 +24,8 @@ public class ContinuarPartida extends AppCompatActivity {
 
 
     String jugadores;
+    String continuarT;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class ContinuarPartida extends AppCompatActivity {
 
 
 
-
+       continuarT = "continuar";
 
 
 
@@ -94,6 +96,7 @@ public class ContinuarPartida extends AppCompatActivity {
         }else{
             Intent intent = new Intent(view.getContext(), mapa.class);
             intent.putExtra("jugadores", jugadores);
+            intent.putExtra("continuar", continuarT);
             startActivity(intent);
             finish();
         }
