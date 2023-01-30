@@ -112,6 +112,16 @@ public class mapa extends AppCompatActivity {
 
             if(parametros.containsKey("continuar")){
                 comprobacionArchivo();
+                if (quesosJ1.size()>0) {
+                    for (String queso : quesosJ1) {
+                        asignarQuesito(queso);
+                    }
+                }
+                if (quesosJ2.size()>0) {
+                    for (String queso : quesosJ2) {
+                        asignarQuesito(queso);
+                    }
+                }
             }
 
             if(parametros.containsKey("acierto")) {
@@ -210,15 +220,24 @@ public class mapa extends AppCompatActivity {
                     String[] parts = line.split(":");
 
                     if (parts[0].contains("quesosJ1")) {
-                        String valor = parts[0].substring(1, parts[0].length() - 1);
-                        if (!valor.isEmpty()) {
-                            quesosJ1 = Arrays.asList(valor.split(","));
+
+                            String input = parts[0];
+                            int index = input.indexOf("=");
+                            String value = input.substring(index + 1);
+                        if(!value.equals("")){
+                            quesosJ1 = Arrays.asList(value.split(","));
                         }
+
                     } else if (parts[0].contains("quesosJ2")) {
-                        String valor = parts[0].substring(1, parts[0].length() - 1);
-                        if (!valor.isEmpty()) {
-                            quesosJ2 = Arrays.asList(valor.split(","));
+
+                        String input = parts[0];
+                        int index = input.indexOf("=");
+                        String value = input.substring(index + 1);
+
+                        if(!value.equals("")){
+                            quesosJ2 = Arrays.asList(value.split(","));
                         }
+
 
                     } else if (parts[0].contains("turno")) {
 
@@ -404,21 +423,14 @@ public class mapa extends AppCompatActivity {
     }
 
     public void grabar(){
-        String nomarchivo = jugadores + ".txt";
+        String nomarchivo = jugador1 +":"+jugador2+ ".txt";
         try {
             File file = new File(getApplicationContext().getFilesDir(), nomarchivo);
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
 
-            if (quesosJ1.size() > 0) {
-                bw.write("quesosJ1=" + quesosJ1);
-                bw.newLine();
-            }
-
-            if (quesosJ2.size() > 0) {
-                bw.write("quesosJ2=" + quesosJ2);
-                bw.newLine();
-            }
+            String listJ1;
+            String listJ2;
 
             bw.write("turno=" + turno);
             bw.newLine();
@@ -433,6 +445,15 @@ public class mapa extends AppCompatActivity {
             bw.write("avatar1=" + avatar1);
             bw.newLine();
             bw.write("avatar2=" + avatar2);
+            bw.newLine();
+            listJ1 = String.join(",", quesosJ1);
+             bw.write("quesosJ1=" + listJ1);
+             bw.newLine();
+
+             listJ2 = String.join(",", quesosJ2);
+             bw.write("quesosJ2=" + listJ2);
+
+
             bw.close();
             fw.close();
 
