@@ -28,7 +28,9 @@ Espacia2 is a space-themed trivia game for children, designed for two players. T
    git clone https://github.com/dnsue01/Espacia2.git
    ```
 2.Open in Android Studio:
+
 3.Go to File > Open and select the project directory.
+
 Build and run the app on your Android device or emulator.
 
 ## 📈 How It Works
