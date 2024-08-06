@@ -2,6 +2,10 @@
 
 Espacia2 is a space-themed trivia game for children, designed for two players. The game features a character selection and a spinning wheel to select trivia questions. It saves game progress and scores using JSON. Developed as a class project using Java and Andro0id Studio.
 
+<img src="/espaciado2img/front.PNG" alt="logo" width="100" heigth="100"/>.
+
+
+
 ## 😍 Figma
 🔗 [Im still learning](https://www.figma.com/design/hpb06IJeH2XEA6gDnpzzN6/Untitled?node-id=0-1&t=fBpXIFwhJyWpQNih-0)
 
@@ -44,3 +48,9 @@ Build and run the app on your Android device or emulator.
 -Start a new game or continue from your last saved progress.
 
 -Select your character and start playing trivia in space!
+
+## 📸 Screenshots
+.<img src="/espaciado2img/front.PNG" alt="logo" width="100" heigth="100"/>
+.<img src="/espaciado2img/names.PNG" alt="logo" width="200" heigth="100"/>
+.<img src="/espaciado2img/personajes.PNG" alt="logo" width="200" heigth="100"/>
+.<img src="/espaciado2img/wheel.PNG" alt="logo" width="200" heigth="100"/>
