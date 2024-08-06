@@ -35,8 +35,8 @@ Build and run the app on your Android device or emulator.
 
 ## 📈 How It Works
 
-- Game Mechanics: Players take turns answering trivia questions, which are selected using a spinning wheel. The game records scores and saves progress using JSON.
-- Saving Progress: The app stores game state and scores in JSON format, allowing players to resume their game and track their progress.
+- **Game Mechanics**: Players take turns answering trivia questions, which are selected using a spinning wheel. The game records scores and saves progress using JSON.
+- **Saving Progress**: The app stores game state and scores in JSON format, allowing players to resume their game and track their progress.
 
 ## 🚀 Usage
 -Launch the app on your Android device.
