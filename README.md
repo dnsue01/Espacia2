@@ -5,7 +5,7 @@ Espacia2 is a space-themed trivia game for children, designed for two players. T
 
 ## 👨‍🏫Developed as a class project
 ### Espacia2 aims to make you fall in love with space and trivia. Happy jorney! 🛸
-<img src="/espaciado2img/front.PNG" alt="logo" width="100" heigth="100"/>.
+<img src="/espaciado2img/logo.PNG" alt="logo" width="100" heigth="100"/>.
 
 
 ## 😍 Figma
@@ -52,7 +52,7 @@ Build and run the app on your Android device or emulator.
 -Select your character and start playing trivia in space!
 
 ## 📸 Screenshots
-.<img src="/espaciado2img/front.PNG" alt="logo" width="100" heigth="100"/>
-.<img src="/espaciado2img/names.PNG" alt="logo" width="200" heigth="100"/>
-.<img src="/espaciado2img/personajes.PNG" alt="logo" width="200" heigth="100"/>
-.<img src="/espaciado2img/wheel.PNG" alt="logo" width="200" heigth="100"/>
+.<img src="/espaciado2img/front.PNG" alt="front" width="100" heigth="100"/>
+.<img src="/espaciado2img/names.PNG" alt="names" width="100" heigth="100"/>
+.<img src="/espaciado2img/personajes.PNG" alt="personajes" width="100" heigth="100"/>
+.<img src="/espaciado2img/wheel.PNG" alt="wheel" width="100" heigth="100"/>
